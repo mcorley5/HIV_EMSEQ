@@ -1,0 +1,20 @@
+conda activate bioinformatics
+
+cd /media/mcorley/0cf5fa7a-d47c-483e-b92f-9eec932cf24f/home/mcorley/10X/bwa-methindex/
+
+
+bwameth.py index Jlat6_3.fa
+
+
+
+bwameth.py --reference Jlat6_3.fa JLAT_6_3_S6_L001_R1_001.fastq.gz JLAT_6_3_S6_L001_R2_001.fastq.gz -t 12 | samtools view -S -b - > jlat63cpgmethnew.bam
+
+samtools index jlat63new.bamsorted.bam
+samtools sort jlat82cpgmethnew.bam -o jlat82new.bamsorted.bam
+
+
+
+MethylDackel extract --minDepth 5 --maxVariantFrac 0.25 --OT 0,0,0,98 --OB 0,0,3,0 --mergeContext --CHH Jlat6_3.fa jlat63new.bamsorted.bam -o jlat63_methylome
+
+
+
