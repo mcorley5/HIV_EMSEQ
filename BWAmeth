@@ -7,14 +7,15 @@ bwameth.py index Jlat6_3.fa
 
 
 
-bwameth.py --reference Jlat6_3.fa JLAT_6_3_S6_L001_R1_001.fastq.gz JLAT_6_3_S6_L001_R2_001.fastq.gz -t 12 | samtools view -S -b - > jlat63cpgmethnew.bam
+bwameth.py --reference JLAT.fa JLat8_4_CpG_S69_L001_R1_001.fastq.gz JLat8_4_CpG_S69_L001_R2_001.fastq.gz -t 12 | samtools view -S -b - > jlat_cpg.bam
 
-samtools index jlat63new.bamsorted.bam
-samtools sort jlat82cpgmethnew.bam -o jlat82new.bamsorted.bam
-
+samtools sort jlat_cpg.bam -o jlat_cpg.bamsorted.bam
 
 
-MethylDackel extract --minDepth 5 --maxVariantFrac 0.25 --OT 0,0,0,98 --OB 0,0,3,0 --mergeContext --CHH Jlat6_3.fa jlat63new.bamsorted.bam -o jlat63_methylome
+samtools index jlat_cpg.bamsorted.bam
+
+
+MethylDackel extract --minDepth 5 --maxVariantFrac 0.25 --OT 0,0,0,98 --OB 0,0,3,0 --mergeContext --CHH JLAT.fa jlat_cpg.bamsorted.bam -o jlatcpg_methylome
 
 
 
